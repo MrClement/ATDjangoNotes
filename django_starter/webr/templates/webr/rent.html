@@ -1,0 +1,37 @@
+<html>
+<head>
+  <title>{{ title}}</title>
+</head>
+<body>
+  {% if error %}
+    <p style="color:red">{{error}}</p>
+  {% endif %}
+  <form method="POST" action="{% url 'rent' %}">
+    {% csrf_token %}
+    <b>Select a date:</b>
+    <input type="date" required="true" name="rental_date" id="date"></input>
+    <br>
+    <div style="display:none">
+    <b>Select a dinosaur:</b>
+    <br>
+  <select name="dino" id="dinos">
+
+  </select>
+  <div>
+  <br>
+  <input type="submit">
+  </form>
+</body>
+<script>
+  document.querySelector("#date").addEventListener('change', function() {
+    var date = this.value;
+    fetch('{% url "rentable" %}?date=' + date).then(function(response) {
+      if(response.ok) {
+        return response.text();
+      }
+    }).then(function(text) {
+      document.querySelector("#dinos").innerHTML = text;
+    });
+  });
+</script>
+</html>

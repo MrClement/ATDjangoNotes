@@ -1,0 +1,4 @@
+Update pipenv
+sudo pip install --upgrade pipenv
+
+
