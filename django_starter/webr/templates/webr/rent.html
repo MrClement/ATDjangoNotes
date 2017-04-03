@@ -11,8 +11,9 @@
     <b>Select a date:</b>
     <input type="date" required="true" name="rental_date" id="date"></input>
     <br>
-    <div style="display:none">
-    <b>Select a dinosaur:</b>
+    <div style="display:none" id="dino_display">
+      <b>Select a dinosaur:</b>
+    </div>
     <br>
   <select name="dino" id="dinos">
 
@@ -31,6 +32,8 @@
       }
     }).then(function(text) {
       document.querySelector("#dinos").innerHTML = text;
+      document.querySelector("#dino_display").style.display = "block";
+
     });
   });
 </script>
